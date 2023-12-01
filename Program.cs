@@ -22,7 +22,7 @@ class Program
         string json = System.Text.Json.JsonSerializer.Serialize(inventory);
         File.WriteAllText("data.json", json);
     }
-
+//regex for formatting date 
     static string FormatDate(string input)
     {
         // SRP: Formats the date to mm/dd/yyyy and ensures valid date format using regex.
