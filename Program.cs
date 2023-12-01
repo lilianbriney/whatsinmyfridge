@@ -4,7 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-
+//generic class
 class InventoryItem
 {
     public string Name { get; set; } = string.Empty;
@@ -18,6 +18,7 @@ class Program
     static void SaveInventoryToFile()
     {
         // SRP: Saves the current inventory to a file in JSON format.
+        //log of item inventory saved to a text file
         string json = System.Text.Json.JsonSerializer.Serialize(inventory);
         File.WriteAllText("data.json", json);
     }
@@ -43,7 +44,7 @@ class Program
             inventory = System.Text.Json.JsonSerializer.Deserialize<List<InventoryItem>>(json) ?? new List<InventoryItem>();
         }
     }
-
+    //list
     static List<InventoryItem> inventory = new List<InventoryItem>();
 
     static void DisplayMenu()
