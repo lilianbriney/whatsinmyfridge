@@ -17,15 +17,15 @@ class Program
 {
     static void SaveInventoryToFile()
     {
-// SRP: Saves the current inventory to a file in JSON format.
-//log of item inventory saved to a text file
+        // SRP: Saves the current inventory to a file in JSON format.
+        //log of item inventory saved to a text file
         string json = System.Text.Json.JsonSerializer.Serialize(inventory);
         File.WriteAllText("data.json", json);
     }
-//regex for formatting date 
+    //regex for formatting date 
     static string FormatDate(string input)
     {
-// SRP: Formats the date to mm/dd/yyyy and ensures valid date format using regex.
+        // SRP: Formats the date to mm/dd/yyyy and ensures valid date format using regex.
         var digitsOnly = string.Concat(input.Where(char.IsDigit));
         if (digitsOnly.Length == 8)
         {
@@ -37,19 +37,19 @@ class Program
 
     static void LoadInventoryFromFile()
     {
-// SRP: Loads the inventory from a file in JSON format.
+        // SRP: Loads the inventory from a file in JSON format.
         if (File.Exists("data.json"))
         {
             string json = File.ReadAllText("data.json");
             inventory = System.Text.Json.JsonSerializer.Deserialize<List<InventoryItem>>(json) ?? new List<InventoryItem>();
         }
     }
-//list
+    //list
     static List<InventoryItem> inventory = new List<InventoryItem>();
 
     static void DisplayMenu()
     {
- // SRP: Displays a simple menu for interacting with the inventory.
+        // SRP: Displays a simple menu for interacting with the inventory.
         Console.WriteLine("                     ▐▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▌");
         Console.WriteLine("                     ▐       ██╗    ██╗██╗  ██╗ █████╗ ████████╗    ██╗███████╗    ██╗███╗   ██╗          ▌");
         Console.WriteLine("                     ▐       ██║    ██║██║  ██║██╔══██╗╚══██╔══╝    ██║██╔════╝    ██║████╗  ██║          ▌");
@@ -72,7 +72,7 @@ class Program
 
     static void AddItem()
     {
-// SRP: Adds an item to the inventory with user input validation.
+        // SRP: Adds an item to the inventory with user input validation.
         Console.Write(" Enter name of item: ");
         string name = Console.ReadLine() ?? string.Empty;
         Console.Write("Enter date of purchase: ");
@@ -92,12 +92,12 @@ class Program
         }
 
         Console.Write("Enter expiration date: ");
-        string expirationDate; 
+        string expirationDate;
 
         while (true)
         {
-            
-            
+
+
             string input = Console.ReadLine() ?? string.Empty;
             expirationDate = FormatDate(input);
             if (DateTime.TryParseExact(expirationDate, "dd/mm/yyyy.", CultureInfo.InvariantCulture, DateTimeStyles.None, out _))
@@ -130,7 +130,7 @@ class Program
 
     static void RemoveItem()
     {
-// SRP: Removes an item from the inventory with user input validation.
+        // SRP: Removes an item from the inventory with user input validation.
         if (inventory.Count == 0)
         {
             Console.WriteLine("Inventory is empty. Cannot remove items.");
@@ -158,7 +158,7 @@ class Program
 
     static void ViewInventory()
     {
-// SRP: Displays the current inventory in a user-friendly format.
+        // SRP: Displays the current inventory in a user-friendly format.
         if (inventory.Count == 0)
         {
             Console.WriteLine("Inventory is empty.");
@@ -174,7 +174,7 @@ class Program
 
     static void Main()
     {
-// SRP: Manages the main control flow of the inventory application.
+        // SRP: Manages the main control flow of the inventory application.
         LoadInventoryFromFile();
 
         while (true)
